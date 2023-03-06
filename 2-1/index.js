@@ -11,7 +11,7 @@ app.use(express.static("public"));
 
 app.use("/", shopRouter);
 app.use("/shoes", shoesRouter);
-// app.use(globalErrorHandler);
+app.use(globalErrorHandler);
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`App is listening of port ${port}...`);
