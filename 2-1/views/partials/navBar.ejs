@@ -1,0 +1,46 @@
+<!-- navbar.ejs -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+  <a class="navbar-brand" href="/home">SHO SHO</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" style="margin-right: auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/home">
+          <i class="bi bi-house-door-fill current"></i> Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about-us">
+          <i class="bi bi-info-circle-fill"></i> About Us
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/contact">
+          <i class="bi bi-envelope-fill"></i> Contact
+        </a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 d-flex" action="/search">
+      <input
+        id="searchValue"
+        class="form-control me-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search" />
+      <button
+        class="btn btn-outline-success my-2 my-sm-0"
+        type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+</nav>
