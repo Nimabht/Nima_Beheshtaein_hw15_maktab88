@@ -4,6 +4,6 @@
     "password": "user123",
     "email": "test@test.com",
     "gender": "male",
-    "isLoggedIn": false
+    "isLoggedIn": true
   }
 ]

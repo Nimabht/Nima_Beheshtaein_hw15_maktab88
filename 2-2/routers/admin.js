@@ -2,11 +2,10 @@ const express = require("express");
 const path = require("path");
 const Jud = require("json-update-data");
 const users = require("../db/users-data.json");
-const { log } = require("console");
 const router = express.Router();
 
 router.get("/panel", (_req, res) => {
-  res.sendFile(path.join(__dirname, "../views/panel.html"));
+  res.sendFile(path.join(__dirname, "../views/admin/panel.html"));
 });
 
 router.get("/get-all-users", (_req, res) => {
@@ -49,8 +48,8 @@ router.delete("/remove-user/:username", (req, res) => {
 router.get("/:username/info", (req, res) => {
   const username = req.params.username;
   const user = users.find((user) => user.username == username);
-  console.log(user);
-  res.render("./Admin/info", { user });
+
+  res.render("./admin/info", { user });
 });
 
 module.exports = router;

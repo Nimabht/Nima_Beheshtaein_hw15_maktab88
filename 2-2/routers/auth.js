@@ -3,7 +3,6 @@ const path = require("path");
 const Jud = require("json-update-data");
 const users = require("../db/users-data.json");
 const validateUser = require("../validators/user");
-const { log } = require("console");
 const router = express.Router();
 
 router.get("/signup", (req, res) => {
@@ -61,7 +60,14 @@ router.post("/login", (req, res, next) => {
     };
     return next(err);
   }
-  res.json({ user });
+  try {
+    user.isLoggedIn = true;
+    Jud.writeData(
+      path.join(__dirname, "../db/users-data.json"),
+      users
+    );
+    res.json({ user });
+  } catch (err) {}
 });
 
 module.exports = router;

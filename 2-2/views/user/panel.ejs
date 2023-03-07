@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/user/panel.css" />
+    <title>My Account</title>
+  </head>
+  <body>
+    <div
+      class="container text-center bg-black mt-5 w-50 p-5 rounded-5 bg-opacity-75">
+      <h1 class="text-white"><b><%= user.username %> Profile</b></h1>
+      <div class="row justify-content-evenly mt-5">
+        <div class="col-3 p-1">
+          <p class="bg-light px-0 py-3 rounded"><b>Username:</b></p>
+        </div>
+        <div class="col-8 p-1">
+          <p class="bg-light px-0 py-3 rounded">
+            <b><%= user.username %></b>
+          </p>
+        </div>
+      </div>
+      <div class="row justify-content-evenly">
+        <div class="col-3 p-1">
+          <p class="bg-light px-0 py-3 rounded"><b>Password:</b></p>
+        </div>
+        <div class="col-8 p-1">
+          <p class="bg-light px-0 py-3 rounded">
+            <b><%= user.password %></b>
+          </p>
+        </div>
+      </div>
+      <div class="row justify-content-evenly">
+        <div class="col-3 p-1">
+          <p class="bg-light px-0 py-3 rounded"><b>Email:</b></p>
+        </div>
+        <div class="col-8 p-1">
+          <p class="bg-light px-0 py-3 rounded">
+            <b><%= user.email %></b>
+          </p>
+        </div>
+      </div>
+      <div class="row justify-content-evenly">
+        <div class="col-3 p-1">
+          <p class="bg-light px-0 py-3 rounded"><b>Gender:</b></p>
+        </div>
+        <div class="col-8 p-1">
+          <p class="bg-light px-0 py-3 rounded">
+            <b><%= user.gender %></b>
+          </p>
+        </div>
+        <div class="row justify-content-center mt-3">
+          <div class="col-3">
+            <button class="btn btn-primary">Edit Informations</button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-danger">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.slim.js"
+      integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc="
+      crossorigin="anonymous"></script>
+    <script src="js/user/main.js"></script>
+  </body>
+</html>
