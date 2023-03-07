@@ -1,5 +1,8 @@
 const express = require("express");
-const getShoeByIdController = require("../controllers/shoes Controller/getShoeByIdController");
+const {
+  getShoeById,
+  getInfoById,
+} = require("../controllers/shoes Controller/shoes");
 const products = require("../db/products-data.json");
 const router = express.Router();
 
@@ -8,19 +11,7 @@ router.get("/", (_req, res) => {
   return res.json(products);
 });
 //read a product by id
-router.get("/:id", getShoeByIdController);
+router.get("/:id", getShoeById);
 //render info page
-router.get("/info/:id", (req, res) => {
-  const productId = req.params.id;
-  const product = products.find((product) => product.id == productId);
-
-  if (!product) {
-    const error = new NotFoundError(
-      `Product with id ${productId} not found`
-    );
-    return next(error);
-  }
-
-  res.render("info", { shoe: product });
-});
+router.get("/info/:id", getInfoById);
 module.exports = router;
