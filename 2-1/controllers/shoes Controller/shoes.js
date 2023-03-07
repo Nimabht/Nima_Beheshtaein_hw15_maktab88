@@ -3,7 +3,6 @@ const products = require("../../db/products-data.json");
 const getInfoById = (req, res, next) => {
   const productId = req.params.id;
   const product = products.find((product) => product.id == productId);
-  console.log(products);
   if (!product) {
     const error = {
       status: 404,

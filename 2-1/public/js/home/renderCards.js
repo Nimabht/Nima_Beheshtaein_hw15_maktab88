@@ -14,7 +14,6 @@ const renderCards = (searchValue) => {
       },
     });
   } else {
-    console.log(`/search?value=${searchValue}`);
     $.ajax({
       type: "GET",
       url: `/search?value=${searchValue}`,
