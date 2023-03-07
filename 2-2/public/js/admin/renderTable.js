@@ -8,14 +8,14 @@ function renderTable() {
       //reset table
       table.innerHTML = `<tr class="thead-dark">
           <th id="username" scope="col">Username</th>
-          <th id="firstname" scope="col">First name</th>
-          <th id="lastname" scope="col">Last name</th>
+          <th id="password" scope="col">Password</th>
+          <th id="email" scope="col">Email</th>
           <th id="gender" scope="col">Gender</th>
         </tr>`;
       //create rows
       users = users.map((user) => {
-        const { username, firstname, lastname, gender } = user;
-        return { username, firstname, lastname, gender };
+        const { username, password, email, gender } = user;
+        return { username, password, email, gender };
       });
       users.forEach((user) => {
         table.insertRow();

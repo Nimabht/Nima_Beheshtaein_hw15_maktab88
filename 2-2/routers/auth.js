@@ -26,10 +26,9 @@ router.post("/signup", (req, res, next) => {
     return next(err);
   }
   const newUser = {
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    password: req.body.password,
     username: req.body.username,
+    password: req.body.password,
+    email: req.body.email,
     gender: req.body.gender,
     isLoggedIn: false,
   };

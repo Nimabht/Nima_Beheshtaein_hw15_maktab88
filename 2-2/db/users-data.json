@@ -1,9 +1,8 @@
 [
   {
-    "firstname": "john",
-    "lastname": "smith",
     "username": "john_smith",
-    "password": "user1234",
+    "password": "user123",
+    "email": "test@test.com",
     "gender": "male",
     "isLoggedIn": false
   }

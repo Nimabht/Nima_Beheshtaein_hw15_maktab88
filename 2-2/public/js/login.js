@@ -21,14 +21,14 @@ $("form").on("submit", function (e) {
       polipop.add({
         type: "success",
         title: "Success",
-        content: `Welcome ${result.user.firstname} :)`,
+        content: `Welcome ${result.user.username} :)`,
       });
     },
     error: (xhr) => {
       polipop.add({
         type: "error",
         title: "Error",
-        content: xhr.responseText.message,
+        content: JSON.parse(xhr.responseText).message,
       });
     },
   });

@@ -8,6 +8,7 @@ const globalErrorHandler = require("./middlewares/globalErrorHandler");
 const app = express();
 
 app.set("views", "./views");
+app.set("view engine", "ejs");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
