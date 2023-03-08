@@ -7,13 +7,14 @@ const {
   renderLoginPage,
   renderSignupPage,
   loginUser,
+  logoutUser,
 } = require("../controllers/auth");
-const validateUser = require("../validators/user");
+
 const router = express.Router();
 
 router.get("/signup", renderSignupPage);
 router.get("/login", renderLoginPage);
 router.post("/signup", signupUser);
 router.post("/login", loginUser);
-
+router.get("/logout", logoutUser);
 module.exports = router;

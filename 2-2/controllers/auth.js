@@ -1,3 +1,7 @@
+const path = require("path");
+const Jud = require("json-update-data");
+const users = require("../db/users-data.json");
+const validateUser = require("../validators/user");
 module.exports = {
   renderLoginPage: (req, res) => {
     res.sendFile(path.join(__dirname, "../views/login.html"));
@@ -28,7 +32,6 @@ module.exports = {
       gender: req.body.gender,
       isLoggedIn: false,
     };
-    console.log(newUser);
     users.push(newUser);
     try {
       Jud.pushData(
@@ -54,12 +57,32 @@ module.exports = {
       return next(err);
     }
     try {
+      for (const user of users) {
+        user.isLoggedIn = false;
+      }
       user.isLoggedIn = true;
       Jud.writeData(
         path.join(__dirname, "../db/users-data.json"),
         users
       );
-      res.json({ user });
-    } catch (err) {}
+      res.send(user);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  logoutUser: (req, res, next) => {
+    try {
+      for (const user of users) {
+        user.isLoggedIn = false;
+      }
+      Jud.writeData(
+        path.join(__dirname, "../db/users-data.json"),
+        users
+      );
+      res.send({ status: 200, message: "OK" });
+    } catch (error) {
+      const err = { status: "500", message: "something is wrong!!" };
+      return next(err);
+    }
   },
 };

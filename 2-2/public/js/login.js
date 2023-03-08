@@ -18,11 +18,15 @@ $("form").on("submit", function (e) {
     url: "/auth/login",
     data: user,
     success: (result) => {
+      console.log(result);
       polipop.add({
         type: "success",
         title: "Success",
-        content: `Welcome ${result.user.username} :)`,
+        content: `Welcome ${result.username} :)`,
       });
+      setTimeout(() => {
+        window.location.href = `/myAccount`;
+      }, 2000);
     },
     error: (xhr) => {
       polipop.add({

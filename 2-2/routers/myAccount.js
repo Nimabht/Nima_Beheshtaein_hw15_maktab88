@@ -1,8 +1,17 @@
 const express = require("express");
-const { renderUserProfile } = require("../controllers/myAccount");
+const Jud = require("json-update-data");
+const {
+  renderUserProfile,
+  isLoggedIn,
+  renderEditProfile,
+  putUser,
+} = require("../controllers/myAccount");
 const users = require("../db/users-data.json");
 const router = express.Router();
 
-router.get("/:username", renderUserProfile);
+router.get("/", renderUserProfile);
+router.get("/edit", renderEditProfile);
+router.put("/", putUser);
+// router.get("/:username", isLoggedIn);
 
 module.exports = router;

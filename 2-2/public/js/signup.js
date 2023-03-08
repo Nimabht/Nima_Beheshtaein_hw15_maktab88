@@ -27,7 +27,9 @@ $("form").on("submit", function (e) {
         title: "Success",
         content: result,
       });
-      console.log(result);
+      setTimeout(() => {
+        window.location.href = "/auth/login";
+      }, 2000);
     },
     error: (xhr) => {
       polipop.add({

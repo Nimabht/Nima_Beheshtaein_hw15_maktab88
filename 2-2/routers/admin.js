@@ -1,6 +1,4 @@
 const express = require("express");
-const path = require("path");
-const Jud = require("json-update-data");
 const users = require("../db/users-data.json");
 const router = express.Router();
 const {
