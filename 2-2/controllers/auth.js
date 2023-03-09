@@ -2,6 +2,7 @@ const path = require("path");
 const Jud = require("json-update-data");
 const users = require("../db/users-data.json");
 const validateUser = require("../validators/user");
+const { AppError } = require("../utils/app-error");
 module.exports = {
   renderLoginPage: (req, res) => {
     res.sendFile(path.join(__dirname, "../views/login.html"));
@@ -12,18 +13,18 @@ module.exports = {
   signupUser: (req, res, next) => {
     const { error } = validateUser(req.body);
     if (!!error) {
-      const err = { status: 400, message: error.details[0].message };
+      const err = new AppError(error.details[0].message, 400);
       return next(err);
     }
     const duplicateUser = users.find(
       (user) => user.username === req.body.username
     );
     if (!!duplicateUser) {
-      const err = {
-        status: 400,
-        message: "User with given Username already exists",
-      };
-      return next(err);
+      const error = new AppError(
+        "User with given Username already exists",
+        400
+      );
+      return next(error);
     }
     const newUser = {
       username: req.body.username,
@@ -40,7 +41,11 @@ module.exports = {
       );
       res.status(201).send("User Created.");
     } catch (err) {
-      console.log(err.message);
+      const error = new AppError(
+        "Something Went wrong! try again",
+        500
+      );
+      return next(error);
     }
   },
   loginUser: (req, res, next) => {
@@ -50,11 +55,11 @@ module.exports = {
         user.username === username && user.password === password
     );
     if (!user) {
-      const err = {
-        status: 401,
-        message: "Invalid Username or Password!",
-      };
-      return next(err);
+      const error = new AppError(
+        "Invalid Username or Password!",
+        401
+      );
+      return next(error);
     }
     try {
       for (const user of users) {
@@ -67,7 +72,11 @@ module.exports = {
       );
       res.send(user);
     } catch (err) {
-      console.log(err);
+      const error = new AppError(
+        "Something Went wrong! try again",
+        500
+      );
+      return next(error);
     }
   },
   logoutUser: (req, res, next) => {
@@ -80,9 +89,12 @@ module.exports = {
         users
       );
       res.send({ status: 200, message: "OK" });
-    } catch (error) {
-      const err = { status: "500", message: "something is wrong!!" };
-      return next(err);
+    } catch (err) {
+      const error = new AppError(
+        "Something Went wrong! try again",
+        500
+      );
+      return next(error);
     }
   },
 };

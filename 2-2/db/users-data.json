@@ -4,6 +4,13 @@
     "password": "112233",
     "email": "nimabehedasdasshtaein99@gmail.com",
     "gender": "male",
-    "isLoggedIn": true
+    "isLoggedIn": false
+  },
+  {
+    "username": "nima23",
+    "password": "11NIma22",
+    "email": "nimabeheshtaein99@gmail.com",
+    "gender": "male",
+    "isLoggedIn": false
   }
 ]

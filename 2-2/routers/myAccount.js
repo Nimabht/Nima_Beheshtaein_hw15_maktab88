@@ -2,7 +2,6 @@ const express = require("express");
 const Jud = require("json-update-data");
 const {
   renderUserProfile,
-  isLoggedIn,
   renderEditProfile,
   putUser,
 } = require("../controllers/myAccount");

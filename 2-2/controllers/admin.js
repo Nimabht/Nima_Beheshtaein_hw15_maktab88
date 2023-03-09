@@ -1,5 +1,7 @@
 const path = require("path");
 const Jud = require("json-update-data");
+const users = require("../db/users-data.json");
+const { AppError } = require("../utils/app-error");
 module.exports = {
   getUserByUsername: (req, res, next) => {
     const username = req.params.username;
@@ -7,8 +9,8 @@ module.exports = {
       user.username === username;
     });
     if (!user) {
-      const error = { status: 404, message: "User not found" };
-      next(error);
+      const error = new AppError("User not found", 404);
+      return next(error);
     }
 
     res.json(user);
@@ -17,8 +19,8 @@ module.exports = {
     const username = req.params.username;
     const user = users.find((user) => user.username == username);
     if (!user) {
-      const error = { status: 404, message: "User not found" };
-      next(error);
+      const error = new AppError("User not found", 404);
+      return next(error);
     }
     try {
       Jud.deleteData(
@@ -27,15 +29,22 @@ module.exports = {
         username
       );
     } catch (err) {
-      console.log(err.message);
+      const error = new AppError(
+        "Something Went wrong! try again",
+        500
+      );
+      return next(error);
     }
     //FIXME: redirect to panel
     res.json(user);
   },
-  renderInfoByUsername: (req, res) => {
+  renderInfoByUsername: (req, res, next) => {
     const username = req.params.username;
     const user = users.find((user) => user.username == username);
-
+    if (!user) {
+      const error = new AppError("User not found", 404);
+      return next(error);
+    }
     res.render("./admin/info", { user });
   },
   renderAdminPanel: (_req, res) => {

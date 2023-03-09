@@ -3,19 +3,21 @@ const validateUser = require("../validators/user");
 const Jud = require("json-update-data");
 const path = require("node:path");
 const e = require("express");
+const { AppError } = require("../utils/app-error");
 module.exports = {
   renderUserProfile: (req, res, next) => {
     const user = users.find((user) => user.isLoggedIn);
     if (!user) {
-      const error = { status: 500, message: "Somthing is wrong!!" };
+      const error = new AppError("Unauthorized", 401);
       return next(error);
     }
+
     res.render("./user/panel", { user });
   },
   renderEditProfile: (req, res, next) => {
     const user = users.find((user) => user.isLoggedIn);
     if (!user) {
-      const error = { status: 500, message: "Somthing is wrong!!" };
+      const error = new AppError("Unauthorized", 401);
       return next(error);
     }
     res.render("./user/editPanel", { user });
@@ -32,15 +34,12 @@ module.exports = {
       (user) => user.username === selectedUser.username
     );
     if (!!isDuplicated) {
-      const error = {
-        status: 400,
-        message: "Username already exists!!",
-      };
+      const error = new AppError("Username already exists!!", 400);
       return next(error);
     }
     const { error } = validateUser(req.body);
     if (!!error) {
-      const err = { status: 400, message: error.details[0].message };
+      const err = new AppError(error.details[0].message, 400);
       return next(err);
     }
     let userInDb = users.find((user) => user.isLoggedIn);
@@ -50,18 +49,17 @@ module.exports = {
     userInDb.password = password;
     userInDb.email = email;
     userInDb.gender = gender;
-
-    console.log(users);
     try {
-      console.log("aha");
       Jud.writeData(
         path.join(__dirname, "../db/users-data.json"),
         users
       );
       return res.send(selectedUser);
     } catch (err) {
-      console.log(err.message);
-      const error = { status: 500, message: "Something is wrong!!" };
+      const error = new AppError(
+        "Something Went wrong! try again",
+        500
+      );
       return next(error);
     }
   },

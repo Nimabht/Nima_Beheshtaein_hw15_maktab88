@@ -16,7 +16,6 @@ $("form").on("submit", function (e) {
     gender:
       $(".noBullet").children()[3].children[1].value || "not-set",
   };
-  console.log(user);
   $.ajax({
     type: "POST",
     url: "/auth/signup",
