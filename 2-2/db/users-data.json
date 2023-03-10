@@ -12,5 +12,12 @@
     "email": "nimabeheshtaein99@gmail.com",
     "gender": "male",
     "isLoggedIn": false
+  },
+  {
+    "username": "nima3",
+    "password": "11NIma22",
+    "email": "testtest@gmail.com",
+    "gender": "female",
+    "isLoggedIn": false
   }
 ]
